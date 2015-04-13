@@ -1,0 +1,14 @@
+[Unit]
+Description=docker-registry
+After=syslog.target
+After=docker.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/docker run --name=docker-registry -p 5000:5000 registry
+
+# Give a reasonable amount of time for the server to start up/shut down
+TimeoutSec=300
+
+[Install]
+WantedBy=multi-user.target

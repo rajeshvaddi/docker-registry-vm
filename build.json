@@ -11,12 +11,25 @@
 				"shutdown_command": "shutdown -P now"
     }],
     "provisioners": [
-        {    "type": "shell",
+        {    
+            "type": "shell",
             "inline": [ "set -e",
-			"setenforce permissive",
-			"yum install --assumeyes docker",
-			"setenforce enforcing"
-			]
+                "setenforce permissive",
+                "yum install --assumeyes docker",
+                "setenforce enforcing"
+            ]
+        },
+        {
+            "type": "file",
+            "source": "files/docker-registry.service",
+            "destination": "/etc/systemd/system/docker-registry.service"
+        },
+        {
+            "type": "shell",
+            "inline": [
+                "set -e",
+                "systemctl enable docker-registry.service"
+            ]
         }
     ]
 }
