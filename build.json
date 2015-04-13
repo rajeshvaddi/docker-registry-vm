@@ -16,6 +16,7 @@
             "inline": [ "set -e",
                 "setenforce permissive",
                 "yum install --assumeyes docker",
+                "systemctl enable docker",
                 "setenforce enforcing"
             ]
         },

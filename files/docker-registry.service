@@ -1,7 +1,7 @@
 [Unit]
 Description=docker-registry
 After=syslog.target
-After=docker.target
+After=docker.service
 
 [Service]
 Type=simple
