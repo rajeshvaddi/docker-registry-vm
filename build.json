@@ -1,0 +1,22 @@
+{
+    "variables": {
+        "centos7_dir": null
+    },
+    "builders": [{
+        "type": "parallels-pvm",
+        "source_path": "{{ user `centos7_dir` }}",
+        "ssh_username": "root",
+        "ssh_password": "sysadmin",
+				"parallels_tools_flavor": "lin",
+				"shutdown_command": "shutdown -P now"
+    }],
+    "provisioners": [
+        {    "type": "shell",
+            "inline": [ "set -e",
+			"setenforce permissive",
+			"yum install --assumeyes docker",
+			"setenforce enforcing"
+			]
+        }
+    ]
+}
