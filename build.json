@@ -17,6 +17,8 @@
                 "setenforce permissive",
                 "yum install --assumeyes docker",
                 "systemctl enable docker",
+                "firewall-cmd --zone=public --add-port=5000/tcp --permanent",
+                "firewall-cmd --reload",
                 "setenforce enforcing"
             ]
         },
